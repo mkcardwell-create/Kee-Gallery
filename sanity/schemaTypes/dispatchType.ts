@@ -51,5 +51,18 @@ export const dispatchType = defineType({
       name: 'dateDesc',
       by: [{ field: 'date', direction: 'desc' }],
     },
-  ],
+  ],  preview: {
+    select: {
+      title: 'thought',
+      subtitle: 'date',
+      media: 'image',
+    },
+    prepare({ title, subtitle, media }) {
+      return {
+        title: title ? title.slice(0, 60) + '...' : 'Untitled dispatch',
+        subtitle: subtitle,
+        media,
+      }
+    },
+  },
 })
