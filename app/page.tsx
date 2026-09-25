@@ -1,6 +1,8 @@
 import { client } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 
+   export const revalidate = 60
+
 async function getHomeData() {
   const essays = await client.fetch(groq`
     *[_type == "essay" && featured == true] | order(_createdAt desc) [0...3] {
@@ -184,7 +186,7 @@ export default async function Home() {
         </div>
       </footer>
       <div style={{ padding: '1.25rem 3rem', borderTop: '1px solid rgba(232,227,213,0.06)', display: 'flex', justifyContent: 'space-between', background: '#111108' }}>
-        <span style={{ fontSize: '0.48rem', letterSpacing: '0.12em', color: 'rgba(232,227,213,0.2)' }}>© 2025 Kee Gallery. All rights reserved.</span>
+        <span style={{ fontSize: '0.48rem', letterSpacing: '0.12em', color: 'rgba(232,227,213,0.2)' }}>   © {new Date().getFullYear()} Kee Gallery. All rights reserved.</span>
         <span style={{ fontSize: '0.48rem', letterSpacing: '0.12em', color: 'rgba(232,227,213,0.2)' }}>Shot on film. Printed with care.</span>
       </div>
     </main>
